@@ -8,11 +8,6 @@ from django.http import Http404
 
 def index(request):
     contato = Contato.objects.all()
-    paginator = Paginator(contato, 20)  # Show 25
-
-    page = request.GET.get('p')
-    contato = paginator.get_page(page)
-
     return render(request,'index.html', {
         'contatos': contato
     })
