@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block conteudo %}
+<main>
+  <div class="card-columns mt-4">
+    {% for contato in contato %}
+    <div class="card" style="margin-top: 100px;">
+
+      {% if contato.foto %}
+      <a href="#">
+        <img class="card-img-top" src="{{ contato.foto.url }}" alt="{{ contato.nome }}"
+         style="width: 50%; height: 50%; margin: 20px 145px 20px;">
+      </a>
+      {% endif %}
+
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="{% url 'contato_detalhes' contato.id %}">{{ contato.nome }}</a>
+        </h5>
+        <p class="card-text">{{ contato.descricao }}</p>
+        <p class="card-text">
+          <small class="text-muted">
+            {{ contato.data_criacao }}
+          </small>
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+
+{% endblock %}

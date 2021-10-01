@@ -1,0 +1,38 @@
+{% load static %}
+
+<nav>
+  <div class="navbar">
+    <i class='bx bx-menu'></i>
+    <div class="logo"><a href="{% url 'index' %}">Agenda</a></div>
+    <div class="nav-links">
+      <div class="sidebar-logo">
+        <span class="logo-name">Agenda</span>
+        <i class='bx bx-x' ></i>
+      </div>
+      <ul class="links">
+        <li><a href="#">HOME</a></li>
+        <li>
+          <a href="#">Categorias</a>
+          <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+          <ul class="js-sub-menu sub-menu">
+            {% for categoria in categoria %}
+            <li><a href="#">{{ categoria.nome_cat }}</a>
+            {% endfor %}
+          </ul>
+        </li>
+
+
+        <li><a href="#">Sobre nós</a></li>
+      </ul>
+    </div>
+    <div class="search-box">
+      <i class='bx bx-search'></i>
+      <div class="input-box">
+        <input type="text" placeholder="Procurar...">
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script src="script.js"></script>
+  
