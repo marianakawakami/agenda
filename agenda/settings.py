@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'agenda.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'agenda',
+        'NAME': 'card_agenda',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'mariana',

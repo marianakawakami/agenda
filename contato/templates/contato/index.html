@@ -3,31 +3,32 @@
 
 {% block conteudo %}
 <main>
-  <div class="card-columns mt-4">
+  <div class="card-columns mt-4" style="margin:0px 30px 0px 30px;">
     {% for contato in contato %}
     <div class="card" style="margin-top: 100px;">
 
       {% if contato.foto %}
       <a href="#">
         <img class="card-img-top" src="{{ contato.foto.url }}" alt="{{ contato.nome }}"
-         style="width: 50%; height: 50%; margin: 20px 145px 20px;">
+          style="width: 20%; height: 20%;">
       </a>
       {% endif %}
 
       <div class="card-body">
         <h5 class="card-title">
-          <a href="{% url 'contato_detalhes' contato.id %}">{{ contato.nome }}</a>
+          <a href="{% url 'contato_detalhes' contato.id %}">{{ contato.nome }} {{ contato.sobrenome }}</a>
         </h5>
-        <p class="card-text">{{ contato.descricao }}</p>
+        <p class="card-text">{{ contato.telefone }}</p>
         <p class="card-text">
-          <small class="text-muted">
-            {{ contato.data_criacao }}
-          </small>
+          <small class="text-muted">{{ contato.data_criacao }} </small>
         </p>
       </div>
     </div>
     {% endfor %}
   </div>
+
+  {% include 'parciais/_pagination.html' %}
 </main>
+
 
 {% endblock %}
