@@ -1,14 +1,13 @@
-from django.shortcuts import render
-from .models import Contato,Categoria
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404
+from .models import Contato, Categoria
 from django.views.generic.list import ListView
-from django.views.generic.edit import UpdateView
-from django.db.models import Q, Count, Case, When
-from django.contrib import messages
+from django.db.models import Q
+from django.http import Http404
+
 
 class ContatoIndex(ListView):
     model = Contato
-    template_name ='contato/index.html'
+    template_name = 'contato/index.html'
     paginate_by = 3
     context_object_name = 'contato'
     ordering = ['nome']
@@ -18,10 +17,6 @@ class ContatoIndex(ListView):
         context['categoria'] = Categoria.objects.all()
         return context
 
-class ContatoDetalhes(UpdateView):
-    template_name = 'contato/contato_detalhes.html'
-    form_class = Contato
-    context_object_name = 'contato'
 
 class ContatoBusca(ContatoIndex):
     template_name = 'contato/contato_busca.html'
@@ -41,8 +36,9 @@ class ContatoBusca(ContatoIndex):
 
         return qs
 
+
 class ContatoCategoria(ContatoIndex):
-    template_name = 'contato/index.html'
+    template_name = 'contato/contato_busca.html'
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -54,4 +50,4 @@ class ContatoCategoria(ContatoIndex):
 
         qs = qs.filter(categoria_ctt__nome_cat__iexact=categoria)
 
-        return qs        
+        return qs
