@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Contato, Categoria
 from django.views.generic.list import ListView
+from django.utils import timezone
+from django.views.generic.detail import DetailView
+from .models import Contato, Categoria
 from django.db.models import Q
-from django.http import Http404
 
 
 class ContatoIndex(ListView):
@@ -51,3 +51,14 @@ class ContatoCategoria(ContatoIndex):
         qs = qs.filter(categoria_ctt__nome_cat__iexact=categoria)
 
         return qs
+
+class ContatoDetalhes(DetailView):
+    model = Contato
+    template_name = 'contato/contato_detalhes.html'
+    context_object_name = 'contato'     
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
+   

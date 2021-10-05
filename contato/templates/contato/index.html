@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block conteudo %}
 <main>
-  <div class="card-deck justify-content-center" style="margin-top:100px;margin-bottom:100px;">
+  <div class="card-deck justify-content-center" style="margin-top:100px;margin-bottom:20px;">
     {% for contato in contato %}
     <div class="card" style="max-width:350px;">
 
       {% if contato.foto %}
       <div class="row marcador align-items-center">
         <div class="col mx-auto text-center">
-          <a href="#">
+          <a href="{% url 'contato_detalhes' contato.id %}">
             <img class="card-img-top" src="{{ contato.foto.url }}" alt="{{ contato.nome }}"
               style="width: 40%;margin: 10px">
           </a>

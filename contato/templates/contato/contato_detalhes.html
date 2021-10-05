@@ -2,33 +2,26 @@
 {% load static %}
 
 {% block conteudo %}
-<main>
-  <h1 class="mt-5">{{ contato.nome }} {{ contato.sobrenome }}</h1>
-  <dl>
+<div class="card-deck justify-content-center" style="margin: 100px 100px">
 
+  <div class="card" style="max-width: 500px;">
     {% if contato.foto %}
-      <p>
-        <img src="{{ contato.foto.url }}" style="max-width: 250px; height: auto;">
-      </p>
+    <div class="row marcador align-items-center">
+      <div class="col mx-auto text-center">
+          <img class="card-img-top" src="{{ contato.foto.url }}" alt="{{ contato.nome }}"
+            style="width: 300px;margin: 10px">
+      </div>
+    </div>
     {% endif %}
-
-    <dt>ID</dt>
-    <dd>{{ contato.id }}</dd>
-
-    <dt>Telefone</dt>
-    <dd>{{ contato.telefone }}</dd>
-
-    <dt>E-mail</dt>
-    <dd>{{ contato.email }}</dd>
-
-    <dt>Data criação</dt>
-    <dd>{{ contato.data_criacao|date:'d/m/Y H:i:s' }}</dd>
-
-    <dt>Categoria</dt>
-    <dd>{{ contato.categoria }}</dd>
-
-    <dt>Descrição</dt>
-    <dd>{{ contato.descricao }}</dd>
-  </dl>
-</main>
+    <div class="card-body">
+      <h5 class="card-title">{{ contato.nome }} {{ contato.sobrenome }}</h5>
+      <p class="card-text">{{ contato.descricao }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Número Tel : </b>{{ contato.telefone }}</li>
+      <li class="list-group-item"><b>E-mail : </b>{{ contato.email }}</li>
+      <li class="list-group-item"><b>Categoria : </b> {{ contato.categoria_ctt }}</li>
+    </ul>
+  </div>
+</div>
 {% endblock %}
